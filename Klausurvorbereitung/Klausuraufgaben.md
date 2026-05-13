@@ -117,3 +117,124 @@ Automatisch aus den englischen Original-Wochenordnern extrahiert und ins Deutsch
 4) Skizzieren Sie das SNR in Abhaengigkeit von $f$ entsprechend den gegebenen Parametern aus Aufgabe 3).
 
 5) Bei der Berechnung des Wiener-Filters wird eine kleine positive Zahl $\varepsilon=10^-16$ zum Nenner und zum Zaehler addiert. Warum?
+
+## Week07_MockExam
+
+### Week07_MockExam/MockExamGerman.tex
+
+## Probeklausur
+
+1) Geben Sie die mathematische Beschreibung eines digitalen Signals an, das den maximalen Pegel in dB FS hat. Berechnen Sie den dazugehoerigen Pegel in dB FS.
+
+2) Ein Signal $x(t)=\cos\left(500\cdot t\right)$ wird mit $r=249$ Hz abgetastet. Verursacht diese Abtastung Alias? Berechnen Sie das abgetastete Signal fuer $n=2$. Hinweis: $x(n)=x\left(t=n/r\right)$.
+
+3) Ein FIR-Filter ist gegeben durch $h(n)=\left[1; -1\right]$. Ist $h(n)$ stabil? Begruenden Sie Ihre Antwort. Berechnen Sie den Realteil der Uebertragungsfunktion $H(f)$ von $h(n)$ mit Hilfe der z-Transformation. Ist der Realteil fuer ein beliebiges $f$ negativ?
+
+4) Ein Signal $y(n)$ wird durch `y = np.random.randn(10000)` erzeugt. Geben Sie Python-Code an, um Mittelwert und Standardabweichung eines Blocks von $y(n)$ beginnend bei $n=1000$ mit Blocklaenge $N=1000$ zu bestimmen.
+
+5) Geben Sie zwei Gruende fuer die Benutzung von Zeropadding bei einer DFT an. Warum sollte das Eingangssignal der DFT mit einer Fensterfunktion multipliziert werden, bevor man die DFT anwendet?
+
+6) Auf ein Signal $x(n)$ wird eine STFT angewendet. Die Abtastrate ist $r=48$ kHz, das Signal dauert $70$ Minuten. Die Blocklaenge ist $N=1000$, die Ueberlappung ist $75$ %, die Transformationslaenge ist $K=2028$. Was sind die Vorteile grosser und kurzer Blocklaengen $N$? Bestimmen Sie die Groesse der Matrix des resultierenden Spektrogramms. Was bedeuten DFT, FFT und STFT?
+
+7) Ein Signal hat die Frequenz $f=1234$ Hz. Bestimmen Sie die dazugehoerigen Werte in Bark und mel. Was ist die Zeitaufloesung in Millisekunden und die Frequenzaufloesung in Bark fuer das menschliche Gehoer?
+
+8) Es gilt $y(n)=x(n)+d(n)$, $x(n)$ und $d(n)$ sind unkorreliert. Bei $d(n)$ handelt es sich um additives weisses Rauschen. Fuer welches $p$ gilt $\left|Y(f)\right|^p\approx\left|X(f)\right|^p+\left|D(f)\right|^p$? Wie lautet die Abkuerzung fuer das gegebene Rauschmodell? Welche Eigenschaften erfuellt das Spektrum von $d(n)$? Welche Eigenschaften erfuellen die Abtastwerte $d(n)$ im Zeitbereich?
+
+9) Menschliche Sprache wird mit einem Mikrofon aufgenommen. Was ist der typische Frequenzbereich menschlicher Sprache? Was ist der typische Mittelwert des aufgenommenen Signals?
+
+10) Welches Delay erzeugt ein symmetrisches FIR-Filter im Durchlassbereich in Millisekunden? Die Laenge des Filters ist $N=20$, die Abtastrate ist $r=16$ kHz.
+
+11) Das IIR-Filter $y(n)=a\cdot y(n-1)+(1-a)\cdot x(n)$ wird betrachtet. Fuer welche Werte von $a$ ist das Filter stabil? Geben Sie die Verstaerkung des Gleichanteils $H\left(f=0\right)$ an. Ergaenzen Sie Python-Code, um dieses IIR-Filter fuer ein gegebenes Eingangssignal $x(n)$ zu implementieren.
+
+12) Fuer die folgenden zehn NumPy-Code-Schnipsel mit vorangestelltem `import numpy as np` ist jeweils zu bestimmen, ob Ausgabe A oder B entsteht:
+
+```python
+x = np.ones(5)
+assert x.sum()==5, `A'
+print(`B')
+```
+
+```python
+x = np.array([1, 0, 0])
+a = np.array([1, -0.5])
+y = np.array([0, 0])
+for i in range(2):
+    y[i] = x[i] + 0.5 * y[i-1] if i > 0 else x[i]
+assert (y == [1, 0.5]).all(), `A'
+print(`B')
+```
+
+```python
+x = np.array([1, 0, 0])
+b = np.array([1, 1, 1])
+y = np.convolve(x, b, mode='full')
+assert (y == [1, 1, 1, 0, 0]).all(), `A'
+print(`B')
+```
+
+```python
+x = np.array([1, 0, 0, 0])
+X = np.fft.fft(x)
+assert X[0] == X[-1], `A'
+print(`B')
+```
+
+```python
+x = np.array([1, 2, 3])
+b = np.array([1, 1])
+y = np.convolve(x, b, mode='valid')
+assert (y == [3, 5]).all(), `A'
+print(`B')
+```
+
+```python
+x = np.array([1, 2, 3, 4])
+X = np.fft.fft(x)
+assert np.isreal(X).all(), `A'
+print(`B')
+```
+
+```python
+x = np.array([1, 1, 1, 1])
+X = np.fft.fft(x)
+assert abs(X[1]) == 0, `A'
+print(`B')
+```
+
+```python
+x = np.array([1, 2, 3])
+assert np.var(x) == 0.6666666666666666, `A'
+print(`B')
+```
+
+```python
+x = np.array([1, 2, 3])
+assert np.std(x) == 1, `A'
+print(`B')
+```
+
+```python
+x = np.array([1, 2, 3])
+assert np.mean(x) == 2, `A'
+print(`B')
+```
+
+Zugehoerige PDF-Datei in diesem Ordner: `Week07_MockExamGerman.pdf`.
+
+## Week08_Denoising_Beamforming
+
+### Week08_Denoising_Beamforming/01_DelayAndSumBeamformer.ipynb
+
+## Klausurvorbereitung
+
+1) Beweisen Sie, dass die Position des Maximums der Kreuzkorrelation zwischen $x(n)$ und $y(n)=a\cdot x(n-T)$ der Verzoegerung $T$ entspricht.
+
+2) Bestimmen Sie den Gewinn eines Delay-and-Sum-Beamformers fuer den Fall von zwei Mikrofonen, unkorreliertem Rauschen, gleichem Rauschpegel an jedem Mikrofon und perfekter Verzoegerungskompensation.
+
+3) Bestimmen Sie den Gewinn eines Delay-and-Sum-Beamformers fuer den Fall von $N$ Mikrofonen, unkorreliertem Rauschen, gleichem Rauschpegel an jedem Mikrofon und perfekter Verzoegerungskompensation.
+
+4) Es gilt das Kanalmodell $y(n)=a\cdot x(n-T)$. Leiten Sie die Gleichungen her, mit denen die Verstaerkung $a$ und die Verzoegerung $T$ aus dem Eingangssignal $x(n)$ und dem Ausgangssignal $y(n)$ bestimmt werden koennen.
+
+5) Ein Delay-and-Sum-Beamformer mit zwei Mikrofonen im Abstand von $0.2$ m addiert die beiden aufgenommenen Signale bei einem Winkel von $\alpha=30$ Grad. Bestimmen Sie die notwendige Verzoegerung $T_0$ in Samples fuer das fruehere Signal, bevor beide Signale addiert werden. Hinweis: Die Schallgeschwindigkeit betraegt $343$ m/s und die Abtastrate ist $r=48$ kHz. Nehmen Sie Fernfeldbedingungen fuer die Schallquelle an; die Schallwellen treffen also als ebene Wellen ein.
+
+6) Zwei Eingangssignale werden addiert: $y(n)=x_1(n)+x_2(n)$. Geben Sie eine Gleichung fuer die Energie $E_y$ von $y(n)$ in Abhaengigkeit von den Energien $E_{x_1}$ von $x_1(n)$ und $E_{x_2}$ von $x_2(n)$ fuer zwei Faelle an: $x_1(n)$ und $x_2(n)$ sind unkorreliert. $x_1(n)$ und $x_2(n)$ sind stark korreliert: $x_1(n)\approx c\cdot x_2(n)$, wobei $c$ eine reelle Zahl ist.
